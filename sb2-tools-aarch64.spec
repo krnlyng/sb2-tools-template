@@ -117,6 +117,15 @@ cat > %{buildroot}/etc/hosts << EOF
 EOF
 touch %buildroot/etc/sb2-tools-template
 
+
+cd %buildroot/opt/cross/libexec/gcc
+for f in *; do
+    if [ ! -d $f ]; then
+        continue
+    fi
+    ln -s /opt/cross/libexec/gcc/$f %buildroot/usr/libexec/gcc/$f
+done
+
 %files -f filesincluded
 %defattr(-,root,root)
 %dir /var/log
@@ -125,6 +134,7 @@ touch %buildroot/etc/sb2-tools-template
 /etc/securetty
 %verify(not md5 size mtime) %attr(0400,root,root) %config(noreplace) /etc/shadow
 %verify(not md5 size mtime) %attr(0400,root,root) %config(noreplace) /etc/gshadow
+/usr/libexec/gcc/*
 
 %files -n sb2-tools-aarch64-dependency-inject
 %defattr(-,root,root)
