@@ -8,7 +8,7 @@ Name:          sb2-tools-armv7hl-inject
 Version:       1.0+git29
 Release:       1
 AutoReqProv:   0
-BuildRequires: rpm grep tar patchelf sed
+BuildRequires: rpm gnu-grep gnu-tar patchelf gnu-sed
 BuildRequires: %packages_in_tools
 BuildRequires: %cross_compilers
 # We should build only on i586/i486 these packages, however
